@@ -8,7 +8,7 @@ import com.eofclub.forum.service.LoginService;
 
 @Named
 @RequestScoped
-public class login {
+public class LoginBean {
 
 	@Inject
 	private LoginService loginService;

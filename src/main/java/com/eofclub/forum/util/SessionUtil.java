@@ -17,14 +17,20 @@ public class SessionUtil {
 	}
 
 	public Optional<Object> getSession(String sessionName){
-		Optional<Object> attribute = Optional.of(this.getSessionMap().get(sessionName));
-		return attribute; 
+		if(this.AttributeSessionExists(sessionName))
+			return Optional.of(this.getSessionMap().get(sessionName));
+		return null; 
 	}
 	public void addSession(String key,Object value){
 		this.getSessionMap().put(key, value);
+		System.out.println(this.getSessionMap().get(key));
 	}
 	public void removeAttributeSession(String key){
 		this.getSessionMap().remove(key);
+	}
+
+	private boolean AttributeSessionExists(String sessionName){
+		return this.getSessionMap().containsKey(sessionName);
 	}
 
 }

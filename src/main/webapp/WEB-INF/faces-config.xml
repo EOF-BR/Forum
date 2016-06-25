@@ -9,9 +9,13 @@
 			<default-locale>pt_BR</default-locale>
 		</locale-config>
 		<resource-bundle>
-			<base-name>language</base-name>
+			<base-name>language.string</base-name>
 			<var>language</var>
 		</resource-bundle>		
 	</application>
+	
+	<lifecycle>
+		<phase-listener>com.eofclub.forum.PhaseListener.Authorizer</phase-listener>
+	</lifecycle>
 	
 </faces-config>
