@@ -9,9 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import com.eofclub.forum.model.User;
 
-/**
- * DAO for User
- */
 @Stateless
 public class UserDao {
 	@PersistenceContext(unitName = "ForumPU")
@@ -22,10 +19,10 @@ public class UserDao {
 	}
 
 	public void deleteById(Long id) {
-		User entity = em.find(User.class, id);
-		if (entity != null) {
-			em.remove(entity);
-		}
+		Optional<User> user = Optional.of(em.find(User.class, id));
+		if (user.isPresent())
+			em.remove(user.get());
+		
 	}
 
 	public User findById(Long id) {
