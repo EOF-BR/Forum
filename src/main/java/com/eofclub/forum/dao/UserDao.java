@@ -49,13 +49,10 @@ public class UserDao {
 	}
 	
 	public Optional<User> checkLogin(String email,String password){
-		TypedQuery<User> getUser = em.createQuery(
-				"SELECT u FROM User u where u.email=:email AND u.password=:password",User.class);
-		getUser.setParameter(0, email);
-		getUser.setParameter(1, password);
-		
+		TypedQuery<User> getUser = em.createNamedQuery("check.auth",User.class);
+		getUser.setParameter("email", email);
+		getUser.setParameter("password", password);
 	    Optional<User> user = Optional.of(getUser.getSingleResult());
-		
 		return user;
 	}
 }
