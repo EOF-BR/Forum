@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import java.io.Serializable;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
@@ -13,6 +15,9 @@ import com.eofclub.forum.model.Post;
 
 @Entity
 @Table(name = "users")
+@NamedQueries({
+			@NamedQuery(name="check.auth",query="SELECT u FROM User u where u.email=:email AND u.password=:password")
+		})
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -6355233332208701368L;
