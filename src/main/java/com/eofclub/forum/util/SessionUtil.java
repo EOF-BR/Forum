@@ -1,0 +1,30 @@
+package com.eofclub.forum.util;
+
+import java.util.Map;
+import java.util.Optional;
+
+import javax.ejb.Stateless;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+
+@Stateless
+public class SessionUtil {
+	
+	private ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+	
+	private Map<String, Object> getSessionMap(){
+		return this.externalContext.getSessionMap();
+	}
+
+	public Optional<Object> getSession(String sessionName){
+		Optional<Object> attribute = Optional.of(this.getSessionMap().get(sessionName));
+		return attribute; 
+	}
+	public void addSession(String key,Object value){
+		this.getSessionMap().put(key, value);
+	}
+	public void removeAttributeSession(String key){
+		this.getSessionMap().remove(key);
+	}
+
+}
